@@ -90,7 +90,7 @@ function Dialer ({ fullMode, saveChapter, play }) {
             </Grid>
             <Grid item style={{ flexGrow: 1 }}>
               <Button
-                id="dialer-goTagButton"
+                id="dialer-invio"
                 variant="contained"
                 fullWidth
                 sx={{ fontSize: '3.5rem', height: '100%', minHeight: '184px' }}

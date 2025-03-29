@@ -274,7 +274,7 @@ export default function App ({ halfTime, initTime = 0, homeDir = false }) {
     if (player === 'vlc') {return}
     const episodeDescription = document.getElementById('episodeDescription')
     const elem = document.getElementById('milliBox')
-    const isGoButton = event.currentTarget.id === 'goTagButton'
+    const isGoButton = event?.currentTarget?.id === 'goTagButton'
     let episodeRaw = episodeDescription.value
     if (!episodeRaw && isGoButton) {
       const elemEff = document.getElementById('time')
@@ -743,7 +743,7 @@ export default function App ({ halfTime, initTime = 0, homeDir = false }) {
                 focused
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                onKeyPress={(event) => {
+                onKeyPress={event => {
                   if (event.key === 'Enter') {
                     player === 'zoom' && saveChapter()
                     event.preventDefault()
