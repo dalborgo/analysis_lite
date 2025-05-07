@@ -215,7 +215,7 @@ export default function App ({ halfTime, initTime = 0, homeDir = false }) {
   const [longPressTimer, setLongPressTimer] = useState(null)
   const [longPressTriggered, setLongPressTriggered] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
-  const [hasDialer] = useState(true)
+  const [hasDialer] = useState(player === 'zoom')
   const handleLongPressStart = () => {
     setLongPressTriggered(false)
     const timer = setTimeout(() => {
@@ -275,8 +275,9 @@ export default function App ({ halfTime, initTime = 0, homeDir = false }) {
     const episodeDescription = document.getElementById('episodeDescription')
     const elem = document.getElementById('milliBox')
     const isGoButton = event?.currentTarget?.id === 'goTagButton'
+    const isSaveButton = event?.currentTarget?.id === 'dialer-invio'
     let episodeRaw = episodeDescription.value
-    if (!episodeRaw && isGoButton) {
+    if (!episodeRaw && isSaveButton) {
       const elemEff = document.getElementById('time')
       episodeRaw = elemEff.textContent.replace(':', '')
     }
@@ -316,7 +317,7 @@ export default function App ({ halfTime, initTime = 0, homeDir = false }) {
         newChapters = [...chapters, { time: timeValue, text: episode.trim() }]
       }
     } else {
-      if (existingChapter) {
+      if (existingChapter && !isGoButton) {
         vBlank(chapters)
         newChapters = chapters.filter(chapter => Math.abs(chapter.time - timeValue) > tolerance)
       } else {
@@ -819,14 +820,6 @@ export default function App ({ halfTime, initTime = 0, homeDir = false }) {
             >
               {'->'}
             </Button>&nbsp;
-            {
-              player === 'zoom' &&
-              <>
-                <Button variant="outlined" color="primary" onClick={saveChapter} tabIndex={-1}>
-                  SALVA
-                </Button>&nbsp;
-              </>
-            }
             <Button variant="outlined" color={player === 'zoom' ? 'primary' : 'secondary'} onClick={switchPlayer}
                     tabIndex={-1}>
               <span style={{ fontSize: '1rem' }}>{player === 'zoom' ? 'Z' : 'V'}</span>
