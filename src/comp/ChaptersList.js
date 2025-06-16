@@ -13,7 +13,7 @@ const getListText = (chapters, halfTimeEnd, fullMode) => {
   const output = []
   for (const item of chapters) {
     const time = convertMilli(item.time * 1000, halfTimeEnd)
-    output.push(`${fullMode ? parseInt(time.short) + 45 + '′' : time.short}${time.period}: ${item.text}`)
+    output.push(`${fullMode ? parseInt(time.short, 10) + 45 + '′' : time.short}${time.period}: ${item.text}`)
   }
   return output.join('\n')
 }
@@ -71,7 +71,7 @@ function ChaptersList ({ chapters = [], goTime, initTimeEnd, halfTimeEnd, fullMo
                         </ListItemIcon>
                         <ListItemText
                           id={'' + (item.time * 1000)}
-                          primary={`${fullMode ? parseInt(time.short) + (time.period === 'st' ? 45 : 0) + '′' : time.short}${time.period}: ${item.text}`}
+                          primary={`${fullMode ? parseInt(time.short, 10) + (time.period === 'st' ? 45 : 0) + '′' : time.short}${time.period}: ${item.text}`}
                           style={{ margin: 0, textDecoration: item.time === lastTime ? 'underline' : 'none' }}
                         />
                       </ListItemButton>
@@ -138,7 +138,7 @@ function ChaptersList ({ chapters = [], goTime, initTimeEnd, halfTimeEnd, fullMo
                           </ListItemIcon>
                           <ListItemText
                             id={'' + (item.time * 1000)}
-                            primary={`${fullMode ? parseInt(time.short) + 45 + '′' : time.short}${time.period}: ${item.text}`}
+                            primary={`${fullMode ? parseInt(time.short, 10) + 45 + '′' : time.short}${time.period}: ${item.text}`}
                             style={{ margin: 0, textDecoration: item.time === lastTime ? 'underline' : 'none' }}
                           />
                         </ListItemButton>
